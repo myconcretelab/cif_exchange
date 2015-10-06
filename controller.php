@@ -2,7 +2,7 @@
 namespace Concrete\Package\CifExchange;
 
 use Concrete\Core\Backup\ContentImporter;
-use Package
+use Package;
 
 class Controller extends Package {
     protected $pkgHandle = 'cif_exchange';
