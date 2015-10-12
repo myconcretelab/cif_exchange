@@ -77,6 +77,14 @@ class Exchange extends DashboardPageController {
               $xml = $root->asXML();
               // remove crappy characters
               $xml = preg_replace('/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F]/', '', $xml);
+              // Keep retrying as some empty nodes may contain other empty nodes
+              while(true){
+                  $xml_ref = $xml; // keep old version as reference
+                  // Remove <node /> empty nodes
+                  $xml = preg_replace('~<[^\\s>]+\\s*/>~si', null, $xml);
+                  if($xml_ref === $xml) break;
+              }
+
           		$th = Loader::helper('text');
           		$xml = $th->formatXML($xml);
 
