@@ -7,10 +7,7 @@
     <?php  echo $this->controller->token->output('import')?>
     <fieldset>
         <legend><?php  echo t('Select XML (cif) file to import contents'); ?></legend>
-        <div class="alert alert-danger" role="alert">
-            <h4><?php  echo t('Warning:'); ?></h4>
-            <p><?php  echo t('This action <strong>cannot be undone</strong>. Are you sure?'); ?></p>
-        </div>
+        <textarea name="cif" style="width:100%; height:150px"></textarea>
         <div class="control-group">
             <?php  echo $form->label('fID', t('Select XML File')); ?>
             <div class="controls">
@@ -35,7 +32,7 @@
         </div>
     </div>
     <?php if (isset($outputContent)) : ?>
-      <textarea name="cif" rows="8" cols="40">
+      <textarea name="cif" style="width:100%; height:100px">
         <?php echo $outputContent ?>
       </textarea>
     <?php endif ?>

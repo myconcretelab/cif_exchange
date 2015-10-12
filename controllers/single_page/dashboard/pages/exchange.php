@@ -22,6 +22,11 @@ class Exchange extends DashboardPageController {
     public function import()
     {
         if ($this->token->validate("import")) {
+          if (isset($this->post['cif'])) :
+            $ci = new ContentImporter();
+            $ci->importContentString($this->post['cif']);
+            $this->set('message', t('Done.'));
+          else :
             $valn = Core::make("helper/validation/numbers");
             $fi = new FileImporter();
 
@@ -45,6 +50,7 @@ class Exchange extends DashboardPageController {
                     $this->set('message', t('Done.'));
                 }
             }
+          endif;
         } else {
             $this->error->add($this->token->getErrorMessage());
         }
